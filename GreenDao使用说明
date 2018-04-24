@@ -1,0 +1,57 @@
+/**
+ * 常见的数据库框架(注解和反射以及实体类完成)：
+ * 1.GreenDao;目前使用比较流行；
+ * 2.ORMLite:在xutils之后出现；跟系统SQLite数据库相似，代码更复杂；
+ * 3.ActiveAndroid:最早出现；
+ * 4.xutils(四大模块，viewUtils,BitmapUtils,DbUtils,HttpUtils)-dbUtils:在ActiveAndroid之后出现的
+ */
+ /**
+  * 使用GreenDao的原因:
+  * 1.light:占用空间小，配置容易；
+  * 2.fast:进行数据库操作速率比较快；
+  * 3.map:映射：把实体类对象映射成Sqlite数据库中的内容
+  * 4.进行最大的优化：性能高，消耗内存少；
+  *
+  * 特征：
+  * 1.使用范围广，2011之后；
+  * 2.超级简单：
+  * 3.小：library小于150k,不占用CPU;
+  * 4.最快速：通过智能的代码生成去完成数据库操作；
+  * 5.安全和较多的查询配置；QueryBuilder
+  * 6.强大的表链接:
+  * 7.支持多种属性的类型(属性映射到数据库表中的列)
+  * 8.支持数据加密技术
+  */
+
+ 1》GreenDao库的配置或者集成,
+ 打开Project下的build.gradle,做如下操作：
+  buildscript {
+      repositories {
+          mavenCentral()
+      }
+      dependencies {
+          classpath 'org.greenrobot:greendao-gradle-plugin:3.2.0'
+      }
+  }
+
+ 打开Module下的build.gradle,做如下操作：
+ apply plugin: 'org.greenrobot.greendao'
+ 备注：以上的内容添ply plugin: 'com.android.application'之前
+ compile 'org.greenrobot:greendao:3.2.0'放在Module下的build.gradle的dependencies里面
+
+ 备注：
+ 一步完成进行测试；
+
+ 2》实体类：
+ 给映射要数据库中表的实体类添加注解@Entity  :给class类添加
+ 每个实体类必须要作为数据库中表的主键，注解@Id(autoincrement = true), id类型必须为long,autoincrement无效;
+
+ 3》实体类操作；1>情况1操作方式：Build-Make Project(给实体类自动生成有参构造方法以及set和get,给有参构造方法自动添加@Generated)
+             2>情况2操作方式：用户自己生成生成有参构造方法以及set和get，给有参构造方法添加@Keep注解再编译运行
+ 4》编译运行生成的文件去查找：Module模版名称－build-generated-source-greendao(目录下有3个文件)
+
+ 备注：Dao:全程Data Acess Object:数据访问对象；
+
+ DaoMaster:数据访问对象的入口的关键的类,目的是得到DaoSeesion
+ DaoSession: 数据访问对象的会话层；交互：最终目的是得到实体类的Dao  (增删查改)
+ ProductDao(bean类的名字Dao): 生成实体类对应的表

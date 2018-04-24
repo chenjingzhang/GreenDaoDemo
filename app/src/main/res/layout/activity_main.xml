@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.dxt2.greendaoo.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_insert"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="insert"
+            android:text="插入" />
+
+        <Button
+            android:id="@+id/btn_query"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="query"
+            android:text="查询" />
+
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="delete"
+            android:text="删除" />
+
+        <Button
+            android:id="@+id/btn_update"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="update"
+            android:text="更新" />
+    </LinearLayout>
+    <!--app:iconifiedByDefault设置搜索框是否展开，默认true,true :折叠未展开效果(只有一个图标，需要点击图标才可展开搜索框)
+                                                      false:展开效果，图标在搜索框的外面-->
+    <!--app:closeIcon修改删除图标按钮(x)-->
+    <!--app:defaultQueryHint设置搜索框需要输入的内容提示信息-->
+    <!--app:queryBackground设置搜索框的背景颜色-->
+    <!--app:searchIcon设置搜索框的搜索图标(放大镜)-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/reyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/layout"></android.support.v7.widget.RecyclerView>
+</RelativeLayout>
